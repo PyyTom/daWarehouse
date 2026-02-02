@@ -1,0 +1,15 @@
+<h1>Acceso</h1>
+
+<form method="POST">
+    <label>Nombre:</label>
+    <input type="text" name="name" required>
+
+    <button type="submit">Enviar token</button>
+
+    {% if msg %}
+        <p style="color:green">{{ msg }}</p>
+    {% endif %}
+    {% if error %}
+        <p style="color:red">{{ error }}</p>
+    {% endif %}
+</form>

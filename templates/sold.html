@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pedido OK</title>
+</head>
+<body>
+<h1>Pedido registrado correctamente</h1>
+
+<p>Cliente: <strong>{{ cliente }}</strong></p>
+
+<h3>Productos:</h3>
+<ul>
+    {% for p, q in items %}
+        <li>{{ p }} — {{ q }} unidades</li>
+    {% endfor %}
+</ul>
+
+<a href="/pedidos">Volver</a>
+</body>
+</html>

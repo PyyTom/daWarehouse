@@ -27,9 +27,9 @@ Includes:
    pip install -r requirements.txt
 
 2. Run the Flask web app:
-   '''bash
+   ```bash
    python app.py
 
 4. Run the Flet GUI:
-   '''bash
+   ```bash
    python warehouse_gui.py

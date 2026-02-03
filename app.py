@@ -5,8 +5,8 @@ app=Flask(__name__)
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'tomitokens@gmail.com'
-app.config['MAIL_PASSWORD'] = 'gikydpmolvotdfou'
+app.config['MAIL_USERNAME'] = 'your_mail_address@gmail.com'
+app.config['MAIL_PASSWORD'] = '****************'
 mail = Mail(app)
 app.secret_key='secret_password'
 @app.route('/')

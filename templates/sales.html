@@ -1,52 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Pedido</title>
-
+    <title>Order</title>
     <script>
         function updateProductInfo() {
             const select = document.getElementById("product");
             const option = select.options[select.selectedIndex];
-
             const stock = option.dataset.stock;
             const price = option.dataset.price;
-
             const qty = document.getElementById("qty");
-
-            // Actualizar límites de cantidad
             qty.max = stock;
             qty.value = 1;
-
-            // Mostrar stock y precio
-            document.getElementById("stock_info").innerText = "Stock disponible: " + stock;
-            document.getElementById("price_info").innerText = "Precio: " + price + " €";
-
-            // Calcular subtotal
+            document.getElementById("stock_info").innerText = "Stock available: " + stock;
+            document.getElementById("price_info").innerText = "Price: " + price + " €";
             updateSubtotal();
         }
-
         function updateSubtotal() {
             const select = document.getElementById("product");
             const option = select.options[select.selectedIndex];
-
             const price = parseFloat(option.dataset.price);
             const qty = parseInt(document.getElementById("qty").value);
-
             const subtotal = price * qty;
-
-            document.getElementById("subtotal_info").innerText =
-                "Subtotal: " + subtotal.toFixed(2) + " €";
+            document.getElementById("subtotal_info").innerText = "Subtotal: " + subtotal.toFixed(2) + " €";
         }
     </script>
-
 </head>
 <body>
-
-<h2>Hola {{ client }}, realiza tu pedido</h2>
-
+<h2>Hi {{ client }}, place your order</h2>
 <form action="/sell" method="POST">
-
-    <label>Producto:</label><br>
+    <label>Product:</label><br>
     <select id="product" name="product" onchange="updateProductInfo()">
         {% for supplier, name, price, stock in products %}
             <option value="{{ supplier }}||{{ name }}" data-stock="{{ stock }}" data-price="{{ price }}">
@@ -54,27 +36,20 @@
             </option>
         {% endfor %}
     </select>
-
-    <p id="stock_info">Stock disponible: {{ products[0][3] }}</p>
-    <p id="price_info">Precio: {{ products[0][2] }} €</p>
-
+    <p id="stock_info">Stock available: {{ products[0][3] }}</p>
+    <p id="price_info">Price: {{ products[0][2] }} €</p>
     <label>Cantidad:</label><br>
     <input type="number" id="qty" name="qty"
            min="1"
            max="{{ products[0][3] }}"
            value="1"
            oninput="updateSubtotal()">
-
     <p id="subtotal_info">Subtotal: {{ products[0][2] }} €</p>
-
     <br><br>
-    <button type="submit">Confirmar pedido</button>
+    <button type="submit">Confir order</button>
 </form>
-
 <script>
-    // Inicializar valores al cargar la página
     updateProductInfo();
 </script>
-
 </body>
 </html>

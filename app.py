@@ -5,7 +5,7 @@ app=Flask(__name__)
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'your_mail_address@gmail.com'
+app.config['MAIL_USERNAME'] = 'your_gmail_address@gmail.com'
 app.config['MAIL_PASSWORD'] = '****************'
 mail = Mail(app)
 app.secret_key='secret_password'
@@ -24,7 +24,7 @@ def login():
         token=secrets.token_hex(8)
         session['pending_name']=name
         session['pending_token']=token
-        msg=Message('Your access-token',sender='tommyacha@gmail.com',recipients=[email])
+        msg=Message('Your access-token',sender='your_gmail_address@mail.com',recipients=[email])
         msg.body=f'Hello {name}, your access-token is: {session["pending_token"]}'
         mail.send(msg)
         return redirect('/token')
